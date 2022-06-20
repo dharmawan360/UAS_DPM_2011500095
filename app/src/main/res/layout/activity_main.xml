@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:visibility="visible"
+    tools:context=".MainActivity">
+
+    <Button
+        android:id="@+id/btnTambah"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Tambah Data" />
+
+    <LinearLayout
+        android:id="@+id/linTidakada"
+        android:layout_width="match_parent"
+        android:layout_height="590dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="visible">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="171dp"
+            android:layout_height="160dp"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/ic_baseline_broken_image_24" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Tidak Ada Data...."
+            android:textSize="34sp"/>
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/lvDataDosen"
+        android:layout_width="match_parent"
+        android:layout_height="590dp"
+        android:visibility="gone"/>
+
+
+
+</LinearLayout>
