@@ -4,7 +4,7 @@ import android.content.*
 import android.database.Cursor
 import android.database.sqlite.*
 
-class DbHelper (context: Context):SQLiteOpenHelper(context,"kampus",null,1){
+class DbHelper (context: Context):SQLiteOpenHelper(context,"campuss",null,1){
         var kdnidn =""
         var nmdosen= ""
         var jabatan =""
@@ -13,11 +13,11 @@ class DbHelper (context: Context):SQLiteOpenHelper(context,"kampus",null,1){
         var bidangkeahlian = ""
         var programstudi =""
 
-    private val tabel = "datadosen"
+    private val lecturer = "datadosen"
     private var sql = ""
 
     override fun onCreate(db:SQLiteDatabase?){
-        sql = """create table $tabel(
+        sql = """create table $lecturer(
             nidn char(10) primary key,
             nama_dosen varchar(50) not null,
             jabatan varchar(15) not null,
@@ -30,7 +30,7 @@ class DbHelper (context: Context):SQLiteOpenHelper(context,"kampus",null,1){
         db?.execSQL(sql)
     }
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion:Int,newVersion:Int){
-        sql = "drop table if exist $tabel"
+        sql = "drop table if exist $lecturer"
         db?.execSQL(sql)
     }
     fun simpan():Boolean{
@@ -45,7 +45,7 @@ class DbHelper (context: Context):SQLiteOpenHelper(context,"kampus",null,1){
             put("keahlian",bidangkeahlian)
             put("program_studi",programstudi)
         }
-        val cmd = db.insert(tabel,null,cv)
+        val cmd = db.insert(lecturer,null,cv)
         db.close()
         return cmd != -1L
     }
@@ -61,19 +61,19 @@ class DbHelper (context: Context):SQLiteOpenHelper(context,"kampus",null,1){
             put ("keahlian",bidangkeahlian)
             put ("program_studi",programstudi)
         }
-        val cmd = db.update(tabel,cv,"nidn = ?", arrayOf(kode))
+        val cmd = db.update(lecturer,cv,"nidn = ?", arrayOf(kode))
         db.close()
         return cmd !=-1
     }
 
     fun hapus(kode: String):Boolean{
         val db = writableDatabase
-        val cmd = db.delete(tabel,"nidn = ?", arrayOf(kode))
+        val cmd = db.delete(lecturer,"nidn = ?", arrayOf(kode))
         return cmd !=-1
     }
     fun tampil(): Cursor{
         val db = writableDatabase
-        val reader = db.rawQuery("select * from $tabel",null)
+        val reader = db.rawQuery("select * from $lecturer",null)
         return reader
 
     }
